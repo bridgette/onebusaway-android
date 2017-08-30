@@ -97,6 +97,12 @@
         <item>@string/preferences_arrival_info_style_options_b</item>
     </string-array>
 
+    <string-array name="preferred_vibration">
+        <item>@string/preferences_preferred_vibration_option_none</item>
+        <item>@string/preferences_preferred_vibration_option_default</item>
+        <item>@string/preferences_preferred_vibration_option_custom</item>
+    </string-array>
+
     <!-- Spoken directions based on 16 compass points, but pointing from the user's current location
          towards the selected bus stop instead of N/S/E/W. -->
     <string-array name="spoken_compass_directions">
