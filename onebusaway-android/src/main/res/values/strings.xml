@@ -619,11 +619,8 @@
     <string name="minutes_abbreviation">min</string>
     <string name="minutes_full">minutes</string>
 
-    <string name="preferences_preferred_vibration_title">Change vibration</string>
-    <string name="preferences_preferred_vibration_summary"></string>
-    <string name="preferences_preferred_vibration_option_custom">Custom</string>
-    <string name="preferences_preferred_vibration_option_default">Default</string>
-    <string name="preferences_preferred_vibration_option_none">None</string>
+    <string name="preferences_preferred_vibration_title">Vibrate</string>
+    <string name="preferences_preferred_vibration_summary">Let OneBusAway notifications vibrate</string>
 
     <!-- Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
