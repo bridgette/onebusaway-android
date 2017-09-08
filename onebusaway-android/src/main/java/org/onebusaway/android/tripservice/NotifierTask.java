@@ -147,13 +147,15 @@ public final class NotifierTask implements Runnable {
                      .setContentIntent(contentIntent)
                      .setDeleteIntent(deleteIntent)
                      .setContentTitle(notifyTitle)
-                     .setContentText(notifyText)
-                     .setDefaults(Notification.DEFAULT_SOUND);
+                     .setContentText(notifyText);
 
-        boolean preferVibrate = mSettings.getBoolean("preference_vibrate_allowed", true);
-        if (preferVibrate){
-            notifyBuilder.setDefaults(Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE);
+        boolean vibratePreference = mSettings.getBoolean("preference_vibrate_allowed", true);
+        if (vibratePreference){
+            notifyBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
         }
+
+        String soundPreference = mSettings.getString("preference_notification_sound", "DEFAULT_SOUND");
+        notifyBuilder.setSound(Uri.parse(soundPreference));
 
         return notifyBuilder.build();
     }
