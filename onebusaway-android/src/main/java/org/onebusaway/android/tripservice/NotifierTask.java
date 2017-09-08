@@ -29,6 +29,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 
 /**
@@ -143,19 +144,23 @@ public final class NotifierTask implements Runnable {
         NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(mContext);
 
         notifyBuilder.setSmallIcon(R.drawable.ic_stat_notification)
-                     .setOnlyAlertOnce(true)
-                     .setContentIntent(contentIntent)
-                     .setDeleteIntent(deleteIntent)
-                     .setContentTitle(notifyTitle)
-                     .setContentText(notifyText);
+                .setOnlyAlertOnce(true)
+                .setContentIntent(contentIntent)
+                .setDeleteIntent(deleteIntent)
+                .setContentTitle(notifyTitle)
+                .setContentText(notifyText);
 
         boolean vibratePreference = mSettings.getBoolean("preference_vibrate_allowed", true);
-        if (vibratePreference){
+        if (vibratePreference) {
             notifyBuilder.setDefaults(Notification.DEFAULT_VIBRATE);
         }
 
-        String soundPreference = mSettings.getString("preference_notification_sound", "DEFAULT_SOUND");
-        notifyBuilder.setSound(Uri.parse(soundPreference));
+        String soundPreference = mSettings.getString("preference_notification_sound", "");
+        if (soundPreference.isEmpty()) {
+            notifyBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
+        } else {
+            notifyBuilder.setSound(Uri.parse(soundPreference));
+        }
 
         return notifyBuilder.build();
     }
